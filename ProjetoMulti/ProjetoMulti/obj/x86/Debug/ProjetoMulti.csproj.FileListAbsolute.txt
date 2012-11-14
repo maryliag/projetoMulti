@@ -1,0 +1,12 @@
+c:\users\marylia\documents\visual studio 2010\Projects\ProjetoMulti\ProjetoMulti\ProjetoMulti\bin\x86\Debug\ProjetoMulti.exe
+c:\users\marylia\documents\visual studio 2010\Projects\ProjetoMulti\ProjetoMulti\ProjetoMulti\bin\x86\Debug\ProjetoMulti.pdb
+c:\users\marylia\documents\visual studio 2010\Projects\ProjetoMulti\ProjetoMulti\ProjetoMulti\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\users\marylia\documents\visual studio 2010\Projects\ProjetoMulti\ProjetoMulti\ProjetoMulti\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+c:\users\marylia\documents\visual studio 2010\Projects\ProjetoMulti\ProjetoMulti\ProjetoMulti\obj\x86\Debug\ProjetoMulti.exe
+c:\users\marylia\documents\visual studio 2010\Projects\ProjetoMulti\ProjetoMulti\ProjetoMulti\obj\x86\Debug\ProjetoMulti.pdb
+C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMulti\ProjetoMulti\bin\x86\Debug\ProjetoMulti.exe
+C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMulti\ProjetoMulti\bin\x86\Debug\ProjetoMulti.pdb
+C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMulti\ProjetoMulti\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMulti\ProjetoMulti\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMulti\ProjetoMulti\obj\x86\Debug\ProjetoMulti.exe
+C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMulti\ProjetoMulti\obj\x86\Debug\ProjetoMulti.pdb
