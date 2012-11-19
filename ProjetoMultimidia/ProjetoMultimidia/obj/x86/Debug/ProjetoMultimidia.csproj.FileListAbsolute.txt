@@ -1,0 +1,7 @@
+C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\ProjetoMultimidia.exe
+C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\ProjetoMultimidia.pdb
+C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\obj\x86\Debug\ProjetoMultimidia.exe
+C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\obj\x86\Debug\ProjetoMultimidia.pdb
+C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Content\modelos\ironman.xnb
