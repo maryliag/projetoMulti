@@ -5,3 +5,7 @@ C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMult
 C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\obj\x86\Debug\ProjetoMultimidia.exe
 C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\obj\x86\Debug\ProjetoMultimidia.pdb
 C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Content\modelos\ironman.xnb
+C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Content\modelos\man.xnb
+C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Content\modelos\pista.xnb
+C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Content\modelos\track02.xnb
+C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Content\modelos\TRACK02_0.xnb

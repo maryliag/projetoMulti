@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline" xmlns:Framework="Microsoft.Xna.Framework" xmlns:Processors="Microsoft.Xna.Framework.Content.Pipeline.Processors">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
       <Source>modelos\ironman.FBX</Source>
@@ -20,6 +20,72 @@
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>obj\x86\Debug\modelos\ironman_0.xml</Output>
       <Time>2012-11-19T13:41:53.413-02:00</Time>
+    </Item>
+    <Item>
+      <Source>modelos\man.fbx</Source>
+      <Name>modelos\man</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Content\modelos\man.xnb</Output>
+      <Time>2012-10-10T12:10:56-03:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\modelos\man_0.xml</Key>
+        <Value>2012-11-19T14:12:07.842-02:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>modelos\man.fbx</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\modelos\man_0.xml</Output>
+      <Time>2012-10-10T12:10:56-03:00</Time>
+    </Item>
+    <Item>
+      <Source>modelos\pista.fbx</Source>
+      <Name>modelos\pista</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Content\modelos\pista.xnb</Output>
+      <Time>2012-11-19T15:47:47.53-02:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\modelos\pista_0.xml</Key>
+        <Value>2012-11-19T15:52:54.612-02:00</Value>
+      </Dependency>
+      <Request>C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Content\modelos\TRACK02_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>modelos\pista.fbx</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\modelos\pista_0.xml</Output>
+      <Time>2012-11-19T15:47:47.53-02:00</Time>
+    </Item>
+    <Item>
+      <Source>modelos\track02.tga</Source>
+      <Name>modelos\track02</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Content\modelos\track02.xnb</Output>
+      <Time>2012-11-19T15:54:50.606-02:00</Time>
+    </Item>
+    <Item>
+      <Source>modelos\TRACK02.TGA</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Content\modelos\TRACK02_0.xnb</Output>
+      <Time>2012-11-19T15:54:50.606-02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

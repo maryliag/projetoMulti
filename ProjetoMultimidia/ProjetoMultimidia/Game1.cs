@@ -18,7 +18,23 @@ namespace ProjetoMultimidia
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
         Model player;
+        Model pista;
+
+        Texture2D texturaChaoPista;
+
+        Matrix visao;
+        Matrix projecao;
+
+        Vector3 posicaoPlayer;
+        Vector3 posicaoCamera;
+
+        float rotacaoPlayer = 0.0f;
+        float velocidade;
+        float velocidadeMaxima = 0.1f;
+        float velocidadeMAximaRe = -0.1f;
+        float deslocamentoHorizontal = 0.0f;
 
         public Game1()
         {
@@ -34,7 +50,12 @@ namespace ProjetoMultimidia
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            posicaoPlayer = new Vector3(0, 0, 20);
+            posicaoCamera = new Vector3(0, 10, 0);
+
+            projecao = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45),
+                graphics.GraphicsDevice.Viewport.AspectRatio, 1.0f, 100.0f);
+            visao = Matrix.CreateLookAt(posicaoCamera, posicaoPlayer, Vector3.Up);
 
             base.Initialize();
         }
@@ -48,7 +69,10 @@ namespace ProjetoMultimidia
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            player = Content.Load<Model>("modelos\\ironman");
+            player = Content.Load<Model>("modelos\\man");
+            pista = Content.Load<Model>("modelos\\pista");
+            //texturaChaoPista = Content.Load<Texture2D>("texturas\\");
+            texturaChaoPista = null;
          
         }
 
@@ -72,7 +96,55 @@ namespace ProjetoMultimidia
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            // TODO: Add your update logic here
+            KeyboardState teclado = Keyboard.GetState();
+            if (teclado.IsKeyDown(Keys.Left))
+            {
+                rotacaoPlayer += 0.01f;
+                //deslocamentoHorizontal -= 0.01f;
+            }
+            if (teclado.IsKeyDown(Keys.Right))
+            {
+                rotacaoPlayer -= 0.01f;
+                //deslocamentoHorizontal += 0.01f;
+            }
+            if (teclado.IsKeyDown(Keys.Up))
+            {
+                if (velocidade < velocidadeMaxima)
+                {
+                    velocidade += 0.01f;
+                }
+            }
+            else
+            {
+                if (velocidade > 0)
+                {
+                    velocidade -= 0.01f;
+                }
+            }
+
+            if (teclado.IsKeyDown(Keys.Down))
+            {
+                if (velocidade > velocidadeMAximaRe)
+                {
+                    velocidade -= 0.01f;
+                }
+            }
+            else
+            {
+                if (velocidade < 0)
+                {
+                    velocidade = 0;
+                }
+            }
+
+            Vector3 novaPosicaoPlayer = new Vector3(0, deslocamentoHorizontal, velocidade);
+            posicaoPlayer.Z += Vector3.Transform(novaPosicaoPlayer, Matrix.CreateRotationY(rotacaoPlayer)).Z;
+            posicaoPlayer.X += Vector3.Transform(novaPosicaoPlayer, Matrix.CreateRotationY(rotacaoPlayer)).X;
+
+            Vector3 novaPosicaoCamera = new Vector3(0, 10, -20);
+            novaPosicaoCamera = Vector3.Transform(novaPosicaoCamera, Matrix.CreateRotationY(rotacaoPlayer));
+            posicaoCamera = novaPosicaoCamera + posicaoPlayer;
+            visao = Matrix.CreateLookAt(posicaoCamera, posicaoPlayer, Vector3.Up);
 
             base.Update(gameTime);
         }
@@ -85,9 +157,27 @@ namespace ProjetoMultimidia
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            DrawModelo(player,  Matrix.CreateRotationY(rotacaoPlayer) * Matrix.CreateTranslation(posicaoPlayer),null);
+            DrawModelo(pista, Matrix.CreateRotationX(MathHelper.ToRadians(90)) * Matrix.CreateTranslation(new Vector3(0,-1,-20)), texturaChaoPista);
 
             base.Draw(gameTime);
+        }
+
+        public void DrawModelo(Model modelo, Matrix mundo, Texture2D textura)
+        {
+            foreach (ModelMesh mesh in modelo.Meshes)
+            {
+                foreach (BasicEffect efeito in mesh.Effects)
+                {
+                    efeito.EnableDefaultLighting();
+                    efeito.View = visao;
+                    efeito.Projection = projecao;
+                    efeito.World = mundo;
+                    efeito.TextureEnabled = true;
+                    efeito.Texture = textura;
+                }
+                mesh.Draw();
+            }
         }
     }
 }
