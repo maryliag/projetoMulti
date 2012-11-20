@@ -32,7 +32,7 @@ namespace ProjetoMultimidia
 
         float rotacaoPlayer = 0.0f;
         float velocidade;
-        float velocidadeMaxima = 0.1f;
+        float velocidadeMaxima = 1.0f;
         float velocidadeMAximaRe = -0.1f;
         float deslocamentoHorizontal = 0.0f;
 
@@ -71,8 +71,7 @@ namespace ProjetoMultimidia
 
             player = Content.Load<Model>("modelos\\man");
             pista = Content.Load<Model>("modelos\\pista");
-            //texturaChaoPista = Content.Load<Texture2D>("texturas\\");
-            texturaChaoPista = null;
+            texturaChaoPista = Content.Load<Texture2D>("texturas\\chao");
          
         }
 
@@ -99,12 +98,12 @@ namespace ProjetoMultimidia
             KeyboardState teclado = Keyboard.GetState();
             if (teclado.IsKeyDown(Keys.Left))
             {
-                rotacaoPlayer += 0.01f;
+                rotacaoPlayer += 0.05f;
                 //deslocamentoHorizontal -= 0.01f;
             }
             if (teclado.IsKeyDown(Keys.Right))
             {
-                rotacaoPlayer -= 0.01f;
+                rotacaoPlayer -= 0.05f;
                 //deslocamentoHorizontal += 0.01f;
             }
             if (teclado.IsKeyDown(Keys.Up))
@@ -158,7 +157,7 @@ namespace ProjetoMultimidia
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             DrawModelo(player,  Matrix.CreateRotationY(rotacaoPlayer) * Matrix.CreateTranslation(posicaoPlayer),null);
-            DrawModelo(pista, Matrix.CreateRotationX(MathHelper.ToRadians(90)) * Matrix.CreateTranslation(new Vector3(0,-1,-20)), texturaChaoPista);
+            DrawModelo(pista, Matrix.CreateRotationX(MathHelper.ToRadians(-90)) * Matrix.CreateTranslation(new Vector3(0,-1,-20)), texturaChaoPista);
 
             base.Draw(gameTime);
         }

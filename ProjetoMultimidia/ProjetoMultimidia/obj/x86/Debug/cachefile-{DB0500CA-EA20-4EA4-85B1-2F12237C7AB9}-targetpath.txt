@@ -2,4 +2,4 @@ Content\modelos\ironman.xnb
 Content\modelos\man.xnb
 Content\modelos\pista.xnb
 Content\modelos\track02.xnb
-Content\modelos\TRACK02_0.xnb
+Content\texturas\chao.xnb
