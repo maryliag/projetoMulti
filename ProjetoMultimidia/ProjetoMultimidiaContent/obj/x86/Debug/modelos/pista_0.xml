@@ -3,7 +3,7 @@
   <Asset Type="Graphics:MeshContent">
     <Name>Plane001</Name>
     <Identity>
-      <SourceFilename>C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidiaContent\modelos\pista.fbx</SourceFilename>
+      <SourceFilename>C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidiaContent\modelos\pista.FBX</SourceFilename>
       <SourceTool>FbxImporter</SourceTool>
     </Identity>
     <OpaqueData>

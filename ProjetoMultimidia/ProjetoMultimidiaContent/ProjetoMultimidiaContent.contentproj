@@ -56,13 +56,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="modelos\track02.tga">
-      <Name>track02</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="modelos\pista.FBX">
       <Name>pista</Name>
       <Importer>FbxImporter</Importer>

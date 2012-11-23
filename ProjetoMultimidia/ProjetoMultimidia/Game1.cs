@@ -30,11 +30,12 @@ namespace ProjetoMultimidia
         Vector3 posicaoPlayer;
         Vector3 posicaoCamera;
 
+        List<Area> obstaculos;
+
         float rotacaoPlayer = 0.0f;
         float velocidade;
-        float velocidadeMaxima = 1.0f;
+        float velocidadeMaxima = 10.0f;
         float velocidadeMAximaRe = -0.1f;
-        float deslocamentoHorizontal = 0.0f;
 
         public Game1()
         {
@@ -99,12 +100,10 @@ namespace ProjetoMultimidia
             if (teclado.IsKeyDown(Keys.Left))
             {
                 rotacaoPlayer += 0.05f;
-                //deslocamentoHorizontal -= 0.01f;
             }
             if (teclado.IsKeyDown(Keys.Right))
             {
                 rotacaoPlayer -= 0.05f;
-                //deslocamentoHorizontal += 0.01f;
             }
             if (teclado.IsKeyDown(Keys.Up))
             {
@@ -136,7 +135,7 @@ namespace ProjetoMultimidia
                 }
             }
 
-            Vector3 novaPosicaoPlayer = new Vector3(0, deslocamentoHorizontal, velocidade);
+            Vector3 novaPosicaoPlayer = new Vector3(0, 0, velocidade);
             posicaoPlayer.Z += Vector3.Transform(novaPosicaoPlayer, Matrix.CreateRotationY(rotacaoPlayer)).Z;
             posicaoPlayer.X += Vector3.Transform(novaPosicaoPlayer, Matrix.CreateRotationY(rotacaoPlayer)).X;
 

@@ -11,15 +11,8 @@
       <Time>2012-11-19T13:41:53.413-02:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\modelos\ironman_0.xml</Key>
-        <Value>2012-11-19T13:42:09.569-02:00</Value>
+        <Value>2012-11-21T17:42:15.99-02:00</Value>
       </Dependency>
-    </Item>
-    <Item>
-      <Source>modelos\ironman.FBX</Source>
-      <Importer>FbxImporter</Importer>
-      <Options>IntermediateFile, DontCacheImportedData</Options>
-      <Output>obj\x86\Debug\modelos\ironman_0.xml</Output>
-      <Time>2012-11-19T13:41:53.413-02:00</Time>
     </Item>
     <Item>
       <Source>modelos\man.fbx</Source>
@@ -31,18 +24,11 @@
       <Time>2012-10-10T12:10:56-03:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\modelos\man_0.xml</Key>
-        <Value>2012-11-19T14:12:07.842-02:00</Value>
+        <Value>2012-11-21T17:42:17.503-02:00</Value>
       </Dependency>
     </Item>
     <Item>
-      <Source>modelos\man.fbx</Source>
-      <Importer>FbxImporter</Importer>
-      <Options>IntermediateFile, DontCacheImportedData</Options>
-      <Output>obj\x86\Debug\modelos\man_0.xml</Output>
-      <Time>2012-10-10T12:10:56-03:00</Time>
-    </Item>
-    <Item>
-      <Source>modelos\pista.fbx</Source>
+      <Source>modelos\pista.FBX</Source>
       <Name>modelos\pista</Name>
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
@@ -51,24 +37,8 @@
       <Time>2012-11-20T08:38:37.609-02:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\modelos\pista_0.xml</Key>
-        <Value>2012-11-20T08:38:54.215-02:00</Value>
+        <Value>2012-11-21T17:42:17.666-02:00</Value>
       </Dependency>
-    </Item>
-    <Item>
-      <Source>modelos\pista.fbx</Source>
-      <Importer>FbxImporter</Importer>
-      <Options>IntermediateFile, DontCacheImportedData</Options>
-      <Output>obj\x86\Debug\modelos\pista_0.xml</Output>
-      <Time>2012-11-20T08:38:37.609-02:00</Time>
-    </Item>
-    <Item>
-      <Source>modelos\track02.tga</Source>
-      <Name>modelos\track02</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Content\modelos\track02.xnb</Output>
-      <Time>2012-11-19T15:54:50.606-02:00</Time>
     </Item>
     <Item>
       <Source>texturas\chao.jpg</Source>
@@ -78,6 +48,27 @@
       <Options>None</Options>
       <Output>C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Content\texturas\chao.xnb</Output>
       <Time>2012-11-19T22:07:30.962-02:00</Time>
+    </Item>
+    <Item>
+      <Source>modelos\ironman.FBX</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\modelos\ironman_0.xml</Output>
+      <Time>2012-11-19T13:41:53.413-02:00</Time>
+    </Item>
+    <Item>
+      <Source>modelos\man.fbx</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\modelos\man_0.xml</Output>
+      <Time>2012-10-10T12:10:56-03:00</Time>
+    </Item>
+    <Item>
+      <Source>modelos\pista.FBX</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\modelos\pista_0.xml</Output>
+      <Time>2012-11-20T08:38:37.609-02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
