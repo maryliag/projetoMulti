@@ -12,3 +12,4 @@ C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMult
 C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Content\modelos\pista2.xnb
 C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Content\texturas\chao2.xnb
 C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Content\modelos\box.xnb
+C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Content\texturas\x.xnb

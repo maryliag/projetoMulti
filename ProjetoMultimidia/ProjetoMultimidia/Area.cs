@@ -7,13 +7,15 @@ namespace ProjetoMultimidia
 {
     class Area
     {
+        int id;
         float x1;
         float x2;
         float z1;
         float z2;
 
-        public Area(float x1, float x2, float z1, float z2)
+        public Area(int id, float x1, float x2, float z1, float z2)
         {
+            this.id = id;
             if (x1 < x2)
             {
                 this.x1 = x1;
@@ -48,6 +50,11 @@ namespace ProjetoMultimidia
                 return false;
             }
             return false;
+        }
+
+        public int getId()
+        {
+            return this.id;
         }
     }
 }

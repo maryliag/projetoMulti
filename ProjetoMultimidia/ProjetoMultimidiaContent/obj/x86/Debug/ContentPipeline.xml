@@ -128,6 +128,15 @@
       <Output>obj\x86\Debug\modelos\box_0.xml</Output>
       <Time>2012-11-24T17:26:50.524-02:00</Time>
     </Item>
+    <Item>
+      <Source>texturas\x.png</Source>
+      <Name>texturas\x</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Content\texturas\x.xnb</Output>
+      <Time>2012-11-24T19:10:56.79-02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

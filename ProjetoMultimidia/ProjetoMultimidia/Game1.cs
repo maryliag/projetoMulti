@@ -25,6 +25,7 @@ namespace ProjetoMultimidia
         Model box;
 
         Texture2D texturaChaoPista;
+        Texture2D texturaObstaculo;
         Texture2D coracao;
 
         Matrix visao;
@@ -34,12 +35,15 @@ namespace ProjetoMultimidia
         Vector3 posicaoCamera;
 
         List<Area> obstaculos;
+        List<int> idsObstaculosAtravessados;
 
         float rotacaoPlayer = 0.0f;
         float velocidade;
         float velocidadeMaxima = 10.0f;
         float velocidadeMAximaRe = -0.1f;
 
+        int id = 1;
+        int idRetornado;
         int vidas = 3;
         int vidasMaximas = 3;
 
@@ -58,6 +62,7 @@ namespace ProjetoMultimidia
         protected override void Initialize()
         {
             obstaculos = new List<Area>();
+            idsObstaculosAtravessados = new List<int>();
             posicaoPlayer = new Vector3(0, 0, 20);
             posicaoCamera = new Vector3(0, 10, 0);
 
@@ -80,6 +85,7 @@ namespace ProjetoMultimidia
             player = Content.Load<Model>("modelos\\man");
             pista = Content.Load<Model>("modelos\\pista");
             texturaChaoPista = Content.Load<Texture2D>("texturas\\chao2");
+            texturaObstaculo = Content.Load<Texture2D>("texturas\\x");
             coracao = Content.Load<Texture2D>("texturas\\coracao");
             box = Content.Load<Model>("modelos\\box");
 
@@ -162,9 +168,23 @@ namespace ProjetoMultimidia
                 }
             }
 
-            if (atravessouObstaculo(posicaoPlayer.X, posicaoPlayer.Z))
+            idRetornado = atravessouObstaculo(posicaoPlayer.X, posicaoPlayer.Z);
+            if (!idRetornado.Equals(0))
             {
-                velocidade = 0.1f;
+                if (!idsObstaculosAtravessados.Contains(idRetornado))
+                {
+                    idsObstaculosAtravessados.Add(idRetornado);
+                    vidas -= 1;
+                }
+                
+                if (vidas <= 0)
+                {
+                    velocidade = 0;
+                }
+                else
+                {
+                    velocidade = 0.1f;
+                }
             }
 
             Vector3 novaPosicaoPlayer = new Vector3(0, 0, velocidade);
@@ -193,9 +213,20 @@ namespace ProjetoMultimidia
 
             DrawModelo(player,  Matrix.CreateRotationY(rotacaoPlayer) * Matrix.CreateTranslation(posicaoPlayer),null);
             DrawModelo(pista, Matrix.CreateRotationX(MathHelper.ToRadians(-90)) * Matrix.CreateTranslation(new Vector3(0,-1,0)), texturaChaoPista);
-            addObstaculo(box, new Vector3(0, 0, 30), null);
-            addObstaculo(box, new Vector3(15, 0, 30), null);
-            addObstaculo(box, new Vector3(-15, 0, 70), null);
+
+            addObstaculo(box, new Vector3(0, 0, 70), texturaObstaculo);
+            addObstaculo(box, new Vector3(15, 0, 60), texturaObstaculo);
+            addObstaculo(box, new Vector3(-15, 0, 100), texturaObstaculo);
+            addObstaculo(box, new Vector3(0, 0, 110), texturaObstaculo);
+            addObstaculo(box, new Vector3(15, 0, 160), texturaObstaculo);
+            addObstaculo(box, new Vector3(0, 0, 165), texturaObstaculo);
+            addObstaculo(box, new Vector3(-15, 0, 190), texturaObstaculo);
+            addObstaculo(box, new Vector3(15, 0, 205), texturaObstaculo);
+            addObstaculo(box, new Vector3(0, 0, 220), texturaObstaculo);
+            addObstaculo(box, new Vector3(-15, 0, 240), texturaObstaculo);
+            addObstaculo(box, new Vector3(0, 0, 250), texturaObstaculo);
+            addObstaculo(box, new Vector3(15, 0, 270), texturaObstaculo);
+            addObstaculo(box, new Vector3(0, 0, 300), texturaObstaculo);
 
             //spriteBatch.Begin();
             //for (int i = 0; i < vidas; i++)
@@ -227,21 +258,22 @@ namespace ProjetoMultimidia
 
         public void addObstaculo(Model obstaculo, Vector3 position, Texture2D textura)
         {
-            Area area = new Area(position.X - 3.5f, position.X + 6f, position.Z - 1f, position.Z + 5f);
+            Area area = new Area(id, position.X - 3.5f, position.X + 6f, position.Z - 1f, position.Z + 5f);
             DrawModelo(obstaculo, Matrix.CreateTranslation(position), textura);
             obstaculos.Add(area);
+            id++;
         }
 
-        public Boolean atravessouObstaculo(float x, float z)
+        public int atravessouObstaculo(float x, float z)
         {
             foreach (Area a in obstaculos)
             {
                 if (a.isInArea(x, z))
                 {
-                    return true;
+                    return a.getId();
                 }
             }
-            return false;
+            return 0;
         }
     }
 }
