@@ -2,3 +2,7 @@ Content\modelos\ironman.xnb
 Content\modelos\man.xnb
 Content\modelos\pista.xnb
 Content\texturas\chao.xnb
+Content\texturas\coracao.xnb
+Content\modelos\pista2.xnb
+Content\texturas\chao2.xnb
+Content\modelos\box.xnb

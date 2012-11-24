@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using Microsoft.Kinect;
 
 namespace ProjetoMultimidia
 {
@@ -21,8 +22,10 @@ namespace ProjetoMultimidia
 
         Model player;
         Model pista;
+        Model box;
 
         Texture2D texturaChaoPista;
+        Texture2D coracao;
 
         Matrix visao;
         Matrix projecao;
@@ -36,6 +39,9 @@ namespace ProjetoMultimidia
         float velocidade;
         float velocidadeMaxima = 10.0f;
         float velocidadeMAximaRe = -0.1f;
+
+        int vidas = 3;
+        int vidasMaximas = 3;
 
         public Game1()
         {
@@ -51,13 +57,14 @@ namespace ProjetoMultimidia
         /// </summary>
         protected override void Initialize()
         {
+            obstaculos = new List<Area>();
             posicaoPlayer = new Vector3(0, 0, 20);
             posicaoCamera = new Vector3(0, 10, 0);
 
             projecao = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45),
                 graphics.GraphicsDevice.Viewport.AspectRatio, 1.0f, 100.0f);
             visao = Matrix.CreateLookAt(posicaoCamera, posicaoPlayer, Vector3.Up);
-
+            
             base.Initialize();
         }
 
@@ -72,7 +79,10 @@ namespace ProjetoMultimidia
 
             player = Content.Load<Model>("modelos\\man");
             pista = Content.Load<Model>("modelos\\pista");
-            texturaChaoPista = Content.Load<Texture2D>("texturas\\chao");
+            texturaChaoPista = Content.Load<Texture2D>("texturas\\chao2");
+            coracao = Content.Load<Texture2D>("texturas\\coracao");
+            box = Content.Load<Model>("modelos\\box");
+
          
         }
 
@@ -135,14 +145,39 @@ namespace ProjetoMultimidia
                 }
             }
 
+
+            //teste de vida
+            if (teclado.IsKeyDown(Keys.A))
+            {
+                if (vidas < vidasMaximas)
+                {
+                    vidas += 1;
+                }
+            }
+            if (teclado.IsKeyDown(Keys.S))
+            {
+                if (vidas > 0)
+                {
+                    vidas -= 1;
+                }
+            }
+
+            if (atravessouObstaculo(posicaoPlayer.X, posicaoPlayer.Z))
+            {
+                velocidade = 0.1f;
+            }
+
             Vector3 novaPosicaoPlayer = new Vector3(0, 0, velocidade);
             posicaoPlayer.Z += Vector3.Transform(novaPosicaoPlayer, Matrix.CreateRotationY(rotacaoPlayer)).Z;
             posicaoPlayer.X += Vector3.Transform(novaPosicaoPlayer, Matrix.CreateRotationY(rotacaoPlayer)).X;
+
 
             Vector3 novaPosicaoCamera = new Vector3(0, 10, -20);
             novaPosicaoCamera = Vector3.Transform(novaPosicaoCamera, Matrix.CreateRotationY(rotacaoPlayer));
             posicaoCamera = novaPosicaoCamera + posicaoPlayer;
             visao = Matrix.CreateLookAt(posicaoCamera, posicaoPlayer, Vector3.Up);
+
+           
 
             base.Update(gameTime);
         }
@@ -153,10 +188,22 @@ namespace ProjetoMultimidia
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            int posicao = 10;
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             DrawModelo(player,  Matrix.CreateRotationY(rotacaoPlayer) * Matrix.CreateTranslation(posicaoPlayer),null);
-            DrawModelo(pista, Matrix.CreateRotationX(MathHelper.ToRadians(-90)) * Matrix.CreateTranslation(new Vector3(0,-1,-20)), texturaChaoPista);
+            DrawModelo(pista, Matrix.CreateRotationX(MathHelper.ToRadians(-90)) * Matrix.CreateTranslation(new Vector3(0,-1,0)), texturaChaoPista);
+            addObstaculo(box, new Vector3(0, 0, 30), null);
+            addObstaculo(box, new Vector3(15, 0, 30), null);
+            addObstaculo(box, new Vector3(-15, 0, 70), null);
+
+            //spriteBatch.Begin();
+            //for (int i = 0; i < vidas; i++)
+            //{
+            //    spriteBatch.Draw(coracao, new Vector2(posicao, 10), Color.White);
+            //    posicao += 30;
+            //}
+            //spriteBatch.End();
 
             base.Draw(gameTime);
         }
@@ -176,6 +223,25 @@ namespace ProjetoMultimidia
                 }
                 mesh.Draw();
             }
+        }
+
+        public void addObstaculo(Model obstaculo, Vector3 position, Texture2D textura)
+        {
+            Area area = new Area(position.X - 3.5f, position.X + 6f, position.Z - 1f, position.Z + 5f);
+            DrawModelo(obstaculo, Matrix.CreateTranslation(position), textura);
+            obstaculos.Add(area);
+        }
+
+        public Boolean atravessouObstaculo(float x, float z)
+        {
+            foreach (Area a in obstaculos)
+            {
+                if (a.isInArea(x, z))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

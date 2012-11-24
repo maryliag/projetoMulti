@@ -34,10 +34,10 @@
       <Processor>ModelProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Content\modelos\pista.xnb</Output>
-      <Time>2012-11-20T08:38:37.609-02:00</Time>
+      <Time>2012-11-24T16:53:18.925-02:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\modelos\pista_0.xml</Key>
-        <Value>2012-11-21T17:42:17.666-02:00</Value>
+        <Value>2012-11-24T16:53:25.329-02:00</Value>
       </Dependency>
     </Item>
     <Item>
@@ -68,7 +68,65 @@
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>obj\x86\Debug\modelos\pista_0.xml</Output>
-      <Time>2012-11-20T08:38:37.609-02:00</Time>
+      <Time>2012-11-24T16:53:18.925-02:00</Time>
+    </Item>
+    <Item>
+      <Source>texturas\coracao.jpg</Source>
+      <Name>texturas\coracao</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Content\texturas\coracao.xnb</Output>
+      <Time>2012-11-23T10:59:42.178-02:00</Time>
+    </Item>
+    <Item>
+      <Source>modelos\pista2.FBX</Source>
+      <Name>modelos\pista2</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Content\modelos\pista2.xnb</Output>
+      <Time>2012-11-24T16:49:18.887-02:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\modelos\pista2_0.xml</Key>
+        <Value>2012-11-24T16:49:25.941-02:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>modelos\pista2.FBX</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\modelos\pista2_0.xml</Output>
+      <Time>2012-11-24T16:49:18.887-02:00</Time>
+    </Item>
+    <Item>
+      <Source>texturas\chao2.png</Source>
+      <Name>texturas\chao2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Content\texturas\chao2.xnb</Output>
+      <Time>2012-11-24T17:05:46.148-02:00</Time>
+    </Item>
+    <Item>
+      <Source>modelos\box.FBX</Source>
+      <Name>modelos\box</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Content\modelos\box.xnb</Output>
+      <Time>2012-11-24T17:26:50.524-02:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\modelos\box_0.xml</Key>
+        <Value>2012-11-24T17:26:52.665-02:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>modelos\box.FBX</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\modelos\box_0.xml</Output>
+      <Time>2012-11-24T17:26:50.524-02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
