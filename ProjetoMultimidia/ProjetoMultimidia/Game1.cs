@@ -211,7 +211,7 @@ namespace ProjetoMultimidia
             GraphicsDevice.DepthStencilState = DepthStencilState.Default;
 
             DrawModelo(player,  Matrix.CreateRotationY(rotacaoPlayer) * Matrix.CreateTranslation(posicaoPlayer),null);
-            DrawModelo(pista, Matrix.CreateRotationX(MathHelper.ToRadians(-90)) * Matrix.CreateTranslation(new Vector3(0,-1,0)), texturaChaoPista);
+            DrawModelo(pista, Matrix.CreateRotationX(MathHelper.ToRadians(-90)) * Matrix.CreateTranslation(new Vector3(0,0,0)), texturaChaoPista);
 
             addObstaculo(box, new Vector3(0, 0, 70), texturaObstaculo);
             addObstaculo(box, new Vector3(15, 0, 60), texturaObstaculo);
