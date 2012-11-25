@@ -11,3 +11,4 @@ Content\texturas\coracao2.xnb
 Content\texturas\coracao3.xnb
 Content\texturas\gameover.xnb
 Content\texturas\restart.xnb
+Content\texturas\pedra.xnb

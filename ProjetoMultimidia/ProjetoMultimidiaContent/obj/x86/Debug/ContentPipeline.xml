@@ -173,6 +173,15 @@
       <Output>C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Content\texturas\restart.xnb</Output>
       <Time>2012-11-25T00:49:46.008-02:00</Time>
     </Item>
+    <Item>
+      <Source>texturas\pedra.png</Source>
+      <Name>texturas\pedra</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Content\texturas\pedra.xnb</Output>
+      <Time>2012-11-25T16:11:12.079-02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

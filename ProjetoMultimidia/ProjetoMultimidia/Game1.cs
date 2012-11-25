@@ -39,15 +39,18 @@ namespace ProjetoMultimidia
         List<Area> obstaculos;
         List<int> idsObstaculosAtravessados;
 
-        float rotacaoPlayer = 0.0f;
+        float rotacaoPlayer;
         float velocidade;
         float velocidadeMaxima = 10.0f;
         float velocidadeMAximaRe = -0.1f;
+        float altura;
+        float alturaMaxima = 2.0f;
+
+        Boolean subindo;
 
         int id = 1;
         int idRetornado;
-        int vidas = 3;
-        int vidasMaximas = 3;
+        int vidas;
 
         public Game1()
         {
@@ -63,6 +66,10 @@ namespace ProjetoMultimidia
         /// </summary>
         protected override void Initialize()
         {
+            vidas = 3;
+            rotacaoPlayer = 0.0f;
+            altura = 0.0f;
+            subindo = true;
             obstaculos = new List<Area>();
             idsObstaculosAtravessados = new List<int>();
             posicaoPlayer = new Vector3(0, 0, 20);
@@ -89,7 +96,7 @@ namespace ProjetoMultimidia
             box = Content.Load<Model>("modelos\\box");
 
             texturaChaoPista = Content.Load<Texture2D>("texturas\\chao2");
-            texturaObstaculo = Content.Load<Texture2D>("texturas\\x");
+            texturaObstaculo = Content.Load<Texture2D>("texturas\\pedra");
             coracao = Content.Load<Texture2D>("texturas\\coracao2");
             gameover = Content.Load<Texture2D>("texturas\\gameover");
             restart = Content.Load<Texture2D>("texturas\\restart");
@@ -121,11 +128,11 @@ namespace ProjetoMultimidia
             KeyboardState teclado = Keyboard.GetState();
             if (teclado.IsKeyDown(Keys.Left))
             {
-                rotacaoPlayer += 0.05f;
+                rotacaoPlayer += 0.1f;
             }
             if (teclado.IsKeyDown(Keys.Right))
             {
-                rotacaoPlayer -= 0.05f;
+                rotacaoPlayer -= 0.1f;
             }
             if (teclado.IsKeyDown(Keys.Up))
             {
@@ -163,6 +170,34 @@ namespace ProjetoMultimidia
                 vidas = 3;
                 Initialize();
             }
+
+
+
+            if (altura > 0)
+            {
+                if (subindo)
+                {
+                    altura += 0.05f;
+                } else
+                {
+                    altura -= 0.05f;
+                    if (altura < 0)
+                    {
+                        altura = 0;
+                    }
+                }
+
+                if (altura >= alturaMaxima)
+                {
+                    subindo = false;
+                }
+            }
+
+            if (teclado.IsKeyDown(Keys.Z))
+            {
+                subindo = true;
+                altura = 0.01f;
+            }
            
 
             idRetornado = atravessouObstaculo(posicaoPlayer.X, posicaoPlayer.Z);
@@ -187,6 +222,7 @@ namespace ProjetoMultimidia
             Vector3 novaPosicaoPlayer = new Vector3(0, 0, velocidade);
             posicaoPlayer.Z += Vector3.Transform(novaPosicaoPlayer, Matrix.CreateRotationY(rotacaoPlayer)).Z;
             posicaoPlayer.X += Vector3.Transform(novaPosicaoPlayer, Matrix.CreateRotationY(rotacaoPlayer)).X;
+            posicaoPlayer.Y = altura;
 
 
             Vector3 novaPosicaoCamera = new Vector3(0, 10, -20);
