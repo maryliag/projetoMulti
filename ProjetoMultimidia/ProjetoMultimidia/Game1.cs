@@ -247,21 +247,21 @@ namespace ProjetoMultimidia
             GraphicsDevice.DepthStencilState = DepthStencilState.Default;
 
             DrawModelo(player,  Matrix.CreateRotationY(rotacaoPlayer) * Matrix.CreateTranslation(posicaoPlayer),null);
-            DrawModelo(pista, Matrix.CreateRotationX(MathHelper.ToRadians(-90)) * Matrix.CreateTranslation(new Vector3(0,0,0)), texturaChaoPista);
+            DrawModelo(pista, Matrix.CreateRotationX(MathHelper.ToRadians(-90)) * Matrix.CreateTranslation(new Vector3(0,0,400)), texturaChaoPista);
 
             addObstaculo(box, new Vector3(0, 0, 70), texturaObstaculo);
-            addObstaculo(box, new Vector3(15, 0, 60), texturaObstaculo);
-            addObstaculo(box, new Vector3(-15, 0, 100), texturaObstaculo);
-            addObstaculo(box, new Vector3(0, 0, 110), texturaObstaculo);
-            addObstaculo(box, new Vector3(15, 0, 160), texturaObstaculo);
-            addObstaculo(box, new Vector3(0, 0, 165), texturaObstaculo);
-            addObstaculo(box, new Vector3(-15, 0, 190), texturaObstaculo);
-            addObstaculo(box, new Vector3(15, 0, 205), texturaObstaculo);
-            addObstaculo(box, new Vector3(0, 0, 220), texturaObstaculo);
-            addObstaculo(box, new Vector3(-15, 0, 240), texturaObstaculo);
-            addObstaculo(box, new Vector3(0, 0, 250), texturaObstaculo);
-            addObstaculo(box, new Vector3(15, 0, 270), texturaObstaculo);
-            addObstaculo(box, new Vector3(0, 0, 300), texturaObstaculo);
+            addObstaculo(box, new Vector3(15, 0, 90), texturaObstaculo);
+            addObstaculo(box, new Vector3(-15, 0, 140), texturaObstaculo);
+            addObstaculo(box, new Vector3(0, 0, 180), texturaObstaculo);
+            addObstaculo(box, new Vector3(15, 0, 220), texturaObstaculo);
+            addObstaculo(box, new Vector3(0, 0, 225), texturaObstaculo);
+            addObstaculo(box, new Vector3(-15, 0, 280), texturaObstaculo);
+            addObstaculo(box, new Vector3(15, 0, 305), texturaObstaculo);
+            addObstaculo(box, new Vector3(0, 0, 320), texturaObstaculo);
+            addObstaculo(box, new Vector3(-15, 0, 360), texturaObstaculo);
+            addObstaculo(box, new Vector3(0, 0, 400), texturaObstaculo);
+            addObstaculo(box, new Vector3(15, 0, 410), texturaObstaculo);
+            addObstaculo(box, new Vector3(0, 0, 460), texturaObstaculo);
 
             spriteBatch.Begin();
             for (int i = 0; i < vidas; i++)
