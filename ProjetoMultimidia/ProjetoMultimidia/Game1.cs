@@ -27,6 +27,8 @@ namespace ProjetoMultimidia
         Texture2D texturaChaoPista;
         Texture2D texturaObstaculo;
         Texture2D coracao;
+        Texture2D gameover;
+        Texture2D restart;
 
         Matrix visao;
         Matrix projecao;
@@ -84,10 +86,14 @@ namespace ProjetoMultimidia
 
             player = Content.Load<Model>("modelos\\man");
             pista = Content.Load<Model>("modelos\\pista");
+            box = Content.Load<Model>("modelos\\box");
+
             texturaChaoPista = Content.Load<Texture2D>("texturas\\chao2");
             texturaObstaculo = Content.Load<Texture2D>("texturas\\x");
-            coracao = Content.Load<Texture2D>("texturas\\coracao");
-            box = Content.Load<Model>("modelos\\box");
+            coracao = Content.Load<Texture2D>("texturas\\coracao2");
+            gameover = Content.Load<Texture2D>("texturas\\gameover");
+            restart = Content.Load<Texture2D>("texturas\\restart");
+            
 
          
         }
@@ -152,21 +158,12 @@ namespace ProjetoMultimidia
             }
 
 
-            //teste de vida
-            if (teclado.IsKeyDown(Keys.A))
+            if (teclado.IsKeyDown(Keys.R))
             {
-                if (vidas < vidasMaximas)
-                {
-                    vidas += 1;
-                }
+                vidas = 3;
+                Initialize();
             }
-            if (teclado.IsKeyDown(Keys.S))
-            {
-                if (vidas > 0)
-                {
-                    vidas -= 1;
-                }
-            }
+           
 
             idRetornado = atravessouObstaculo(posicaoPlayer.X, posicaoPlayer.Z);
             if (!idRetornado.Equals(0))
@@ -210,6 +207,8 @@ namespace ProjetoMultimidia
         {
             int posicao = 10;
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.BlendState = BlendState.Opaque;
+            GraphicsDevice.DepthStencilState = DepthStencilState.Default;
 
             DrawModelo(player,  Matrix.CreateRotationY(rotacaoPlayer) * Matrix.CreateTranslation(posicaoPlayer),null);
             DrawModelo(pista, Matrix.CreateRotationX(MathHelper.ToRadians(-90)) * Matrix.CreateTranslation(new Vector3(0,-1,0)), texturaChaoPista);
@@ -228,13 +227,19 @@ namespace ProjetoMultimidia
             addObstaculo(box, new Vector3(15, 0, 270), texturaObstaculo);
             addObstaculo(box, new Vector3(0, 0, 300), texturaObstaculo);
 
-            //spriteBatch.Begin();
-            //for (int i = 0; i < vidas; i++)
-            //{
-            //    spriteBatch.Draw(coracao, new Vector2(posicao, 10), Color.White);
-            //    posicao += 30;
-            //}
-            //spriteBatch.End();
+            spriteBatch.Begin();
+            for (int i = 0; i < vidas; i++)
+            {
+                spriteBatch.Draw(coracao, new Vector2(posicao, 10), Color.White);
+                posicao += 30;
+            }
+
+            if (vidas.Equals(0))
+            {
+                spriteBatch.Draw(gameover, new Vector2(200, 300), Color.White);
+                spriteBatch.Draw(restart, new Vector2(310, 400), Color.White);
+            }
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }

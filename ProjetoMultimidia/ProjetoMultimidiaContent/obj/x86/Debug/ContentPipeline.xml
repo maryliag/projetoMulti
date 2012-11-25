@@ -137,6 +137,42 @@
       <Output>C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Content\texturas\x.xnb</Output>
       <Time>2012-11-24T19:10:56.79-02:00</Time>
     </Item>
+    <Item>
+      <Source>texturas\coracao2.png</Source>
+      <Name>texturas\coracao2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Content\texturas\coracao2.xnb</Output>
+      <Time>2012-11-25T00:38:20.952-02:00</Time>
+    </Item>
+    <Item>
+      <Source>texturas\coracao3.png</Source>
+      <Name>texturas\coracao3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Content\texturas\coracao3.xnb</Output>
+      <Time>2012-11-25T00:38:20.944-02:00</Time>
+    </Item>
+    <Item>
+      <Source>texturas\gameover.png</Source>
+      <Name>texturas\gameover</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Content\texturas\gameover.xnb</Output>
+      <Time>2012-11-25T00:44:13.261-02:00</Time>
+    </Item>
+    <Item>
+      <Source>texturas\restart.png</Source>
+      <Name>texturas\restart</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Content\texturas\restart.xnb</Output>
+      <Time>2012-11-25T00:49:46.008-02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
