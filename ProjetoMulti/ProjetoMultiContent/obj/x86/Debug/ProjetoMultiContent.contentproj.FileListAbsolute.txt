@@ -1,2 +1,0 @@
-c:\users\marylia\documents\visual studio 2010\Projects\ProjetoMulti\ProjetoMulti\ProjetoMultiContent\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMulti\ProjetoMultiContent\obj\x86\Debug\ResolveAssemblyReference.cache
