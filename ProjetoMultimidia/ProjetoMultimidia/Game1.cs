@@ -40,6 +40,7 @@ namespace ProjetoMultimidia
         List<int> idsObstaculosAtravessados;
 
         float rotacaoPlayer;
+        float posicaoLateral;
         float velocidade;
         float velocidadeMaxima = 10.0f;
         float velocidadeMAximaRe = -0.1f;
@@ -51,6 +52,7 @@ namespace ProjetoMultimidia
         int id = 1;
         int idRetornado;
         int vidas;
+        int posicao;
 
         public Game1()
         {
@@ -67,7 +69,10 @@ namespace ProjetoMultimidia
         protected override void Initialize()
         {
             vidas = 3;
+            velocidade = 0.0f;
             rotacaoPlayer = 0.0f;
+            posicaoLateral = 0.0f;
+            posicao = 1;
             altura = 0.0f;
             subindo = true;
             obstaculos = new List<Area>();
@@ -128,12 +133,25 @@ namespace ProjetoMultimidia
             KeyboardState teclado = Keyboard.GetState();
             if (teclado.IsKeyDown(Keys.Left))
             {
-                rotacaoPlayer += 0.1f;
+                //rotacaoPlayer += 0.1f;
+                if (posicao != 0)
+                {
+                    posicao--;
+                }
             }
             if (teclado.IsKeyDown(Keys.Right))
             {
-                rotacaoPlayer -= 0.1f;
+                //rotacaoPlayer -= 0.1f;
+                if (posicao != 2)
+                {
+                    posicao++;
+                }
+                
             }
+            posicaoLateral = novaPosicaoLateral(posicao, posicaoLateral);
+
+
+
             if (teclado.IsKeyDown(Keys.Up))
             {
                 if (velocidade < velocidadeMaxima)
@@ -219,9 +237,9 @@ namespace ProjetoMultimidia
                 }
             }
 
-            Vector3 novaPosicaoPlayer = new Vector3(0, 0, velocidade);
+            Vector3 novaPosicaoPlayer = new Vector3(posicaoLateral, 0, velocidade);
             posicaoPlayer.Z += Vector3.Transform(novaPosicaoPlayer, Matrix.CreateRotationY(rotacaoPlayer)).Z;
-            posicaoPlayer.X += Vector3.Transform(novaPosicaoPlayer, Matrix.CreateRotationY(rotacaoPlayer)).X;
+            posicaoPlayer.X = Vector3.Transform(novaPosicaoPlayer, Matrix.CreateRotationY(rotacaoPlayer)).X;
             posicaoPlayer.Y = altura;
 
 
@@ -249,19 +267,19 @@ namespace ProjetoMultimidia
             DrawModelo(player,  Matrix.CreateRotationY(rotacaoPlayer) * Matrix.CreateTranslation(posicaoPlayer),null);
             DrawModelo(pista, Matrix.CreateRotationX(MathHelper.ToRadians(-90)) * Matrix.CreateTranslation(new Vector3(0,0,400)), texturaChaoPista);
 
-            addObstaculo(box, new Vector3(0, 0, 70), texturaObstaculo);
-            addObstaculo(box, new Vector3(15, 0, 90), texturaObstaculo);
-            addObstaculo(box, new Vector3(-15, 0, 140), texturaObstaculo);
+            addObstaculo(box, new Vector3(0, 2, 70), texturaObstaculo);
+            addObstaculo(box, new Vector3(15,-2, 90), texturaObstaculo);
+            addObstaculo(box, new Vector3(-15, 3, 140), texturaObstaculo);
             addObstaculo(box, new Vector3(0, 0, 180), texturaObstaculo);
-            addObstaculo(box, new Vector3(15, 0, 220), texturaObstaculo);
-            addObstaculo(box, new Vector3(0, 0, 225), texturaObstaculo);
-            addObstaculo(box, new Vector3(-15, 0, 280), texturaObstaculo);
-            addObstaculo(box, new Vector3(15, 0, 305), texturaObstaculo);
+            addObstaculo(box, new Vector3(15, 1, 220), texturaObstaculo);
+            addObstaculo(box, new Vector3(0, 2, 225), texturaObstaculo);
+            addObstaculo(box, new Vector3(-15, 5, 280), texturaObstaculo);
+            addObstaculo(box, new Vector3(15, -3, 305), texturaObstaculo);
             addObstaculo(box, new Vector3(0, 0, 320), texturaObstaculo);
-            addObstaculo(box, new Vector3(-15, 0, 360), texturaObstaculo);
-            addObstaculo(box, new Vector3(0, 0, 400), texturaObstaculo);
-            addObstaculo(box, new Vector3(15, 0, 410), texturaObstaculo);
-            addObstaculo(box, new Vector3(0, 0, 460), texturaObstaculo);
+            addObstaculo(box, new Vector3(-15, 4, 360), texturaObstaculo);
+            addObstaculo(box, new Vector3(0, 1, 400), texturaObstaculo);
+            addObstaculo(box, new Vector3(15, 1, 410), texturaObstaculo);
+            addObstaculo(box, new Vector3(0, 3, 460), texturaObstaculo);
 
             spriteBatch.Begin();
             for (int i = 0; i < vidas; i++)
@@ -315,6 +333,37 @@ namespace ProjetoMultimidia
                 }
             }
             return 0;
+        }
+
+        public float novaPosicaoLateral(int posicao, float posicaoLateral)
+        {
+            float velocidade = 0.3f;
+            if (posicao == 0)
+            {
+                if (posicaoLateral < 10.0f)
+                {
+                    posicaoLateral += velocidade;
+                } 
+            }
+            if (posicao == 1)
+            {
+                if (posicaoLateral > 0.0f)
+                {
+                    posicaoLateral -= velocidade;
+                }
+                else if (posicaoLateral < 0.0f)
+                {
+                    posicaoLateral += velocidade;
+                }
+            }
+            if (posicao == 2)
+            {
+                if (posicaoLateral > -10.0f)
+                {
+                    posicaoLateral -= velocidade;
+                }
+            }
+            return posicaoLateral;
         }
     }
 }

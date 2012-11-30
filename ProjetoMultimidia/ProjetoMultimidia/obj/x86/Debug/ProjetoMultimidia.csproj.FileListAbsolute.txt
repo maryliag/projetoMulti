@@ -18,3 +18,8 @@ C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMult
 C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Content\texturas\gameover.xnb
 C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Content\texturas\restart.xnb
 C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Content\texturas\pedra.xnb
+C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Coding4Fun.Kinect.WinForm.dll
+C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Coding4Fun.Kinect.Wpf.dll
+C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Microsoft.Expression.Drawing.dll
+C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Coding4Fun.Kinect.WinForm.pdb
+C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Coding4Fun.Kinect.Wpf.pdb
