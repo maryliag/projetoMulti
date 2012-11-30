@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Kinect;
+using Coding4Fun.Kinect.Wpf;
 
 namespace ProjetoMultimidia
 {
@@ -19,11 +20,15 @@ namespace ProjetoMultimidia
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        KinectSensor sensor;
 
         Model player;
         Model pista;
         Model box;
 
+        Texture2D cabeca;
+        Texture2D maoEsquerda;
+        Texture2D maoDireita;
         Texture2D texturaChaoPista;
         Texture2D texturaObstaculo;
         Texture2D coracao;
@@ -53,11 +58,19 @@ namespace ProjetoMultimidia
         int idRetornado;
         int vidas;
         int posicao;
+        int cabecaX;
+        int cabecaY;
+        int maoEsquerdaX;
+        int maoEsquerdaY;
+        int maoDireitaX;
+        int maoDireitaY;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            graphics.PreferredBackBufferWidth = 640;
+            graphics.PreferredBackBufferHeight = 480;
         }
 
         /// <summary>
@@ -68,23 +81,33 @@ namespace ProjetoMultimidia
         /// </summary>
         protected override void Initialize()
         {
-            vidas = 3;
-            velocidade = 0.0f;
-            rotacaoPlayer = 0.0f;
-            posicaoLateral = 0.0f;
-            posicao = 1;
-            altura = 0.0f;
-            subindo = true;
-            obstaculos = new List<Area>();
-            idsObstaculosAtravessados = new List<int>();
-            posicaoPlayer = new Vector3(0, 0, 20);
-            posicaoCamera = new Vector3(0, 10, 0);
+            sensor = KinectSensor.KinectSensors[0];
+            sensor.SkeletonFrameReady += new EventHandler<SkeletonFrameReadyEventArgs>(sensor_SkeletonFrameReady);
+            sensor.DepthFrameReady += new EventHandler<DepthImageFrameReadyEventArgs>(sensor_DepthFrameReady);
+            //pode ser esse
+            //sensor.SkeletonStream.Enable();
+            sensor.SkeletonStream.Enable(new TransformSmoothParameters()
+            {
+                Correction = 0.5f,
+                JitterRadius = 0.05f,
+                MaxDeviationRadius = 0.04f,
+                Smoothing = 0.5f
+            });
+            sensor.DepthStream.Enable(DepthImageFormat.Resolution320x240Fps30);
+            sensor.Start();
+            valoresIniciais();
 
-            projecao = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45),
-                graphics.GraphicsDevice.Viewport.AspectRatio, 1.0f, 100.0f);
-            visao = Matrix.CreateLookAt(posicaoCamera, posicaoPlayer, Vector3.Up);
-            
             base.Initialize();
+        }
+
+        void sensor_DepthFrameReady(object sender, DepthImageFrameReadyEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        void sensor_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -105,8 +128,10 @@ namespace ProjetoMultimidia
             coracao = Content.Load<Texture2D>("texturas\\coracao2");
             gameover = Content.Load<Texture2D>("texturas\\gameover");
             restart = Content.Load<Texture2D>("texturas\\restart");
-            
 
+            cabeca = Content.Load<Texture2D>("texturas\\coracao3");
+            maoDireita = Content.Load<Texture2D>("texturas\\coracao3");
+            maoEsquerda = Content.Load<Texture2D>("texturas\\coracao3");
          
         }
 
@@ -185,8 +210,7 @@ namespace ProjetoMultimidia
 
             if (teclado.IsKeyDown(Keys.R))
             {
-                vidas = 3;
-                Initialize();
+                valoresIniciais();
             }
 
 
@@ -293,6 +317,10 @@ namespace ProjetoMultimidia
                 spriteBatch.Draw(gameover, new Vector2(200, 300), Color.White);
                 spriteBatch.Draw(restart, new Vector2(310, 400), Color.White);
             }
+
+            spriteBatch.Draw(cabeca, new Rectangle(cabecaX, cabecaY, 100, 150), Color.White);
+            spriteBatch.Draw(maoEsquerda, new Rectangle(maoEsquerdaX, maoEsquerdaY, 75, 75), Color.White);
+            spriteBatch.Draw(maoDireita, new Rectangle(maoDireitaX, maoDireitaY, 75, 75), Color.White);
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -365,5 +393,27 @@ namespace ProjetoMultimidia
             }
             return posicaoLateral;
         }
+
+        public void valoresIniciais()
+        {
+            vidas = 3;
+            velocidade = 0.0f;
+            rotacaoPlayer = 0.0f;
+            posicaoLateral = 0.0f;
+            posicao = 1;
+            altura = 0.0f;
+            subindo = true;
+            obstaculos = new List<Area>();
+            idsObstaculosAtravessados = new List<int>();
+            posicaoPlayer = new Vector3(0, 0, 20);
+            posicaoCamera = new Vector3(0, 10, 0);
+
+            projecao = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45),
+                graphics.GraphicsDevice.Viewport.AspectRatio, 1.0f, 100.0f);
+            visao = Matrix.CreateLookAt(posicaoCamera, posicaoPlayer, Vector3.Up);
+            
+        }
+
+      
     }
 }
