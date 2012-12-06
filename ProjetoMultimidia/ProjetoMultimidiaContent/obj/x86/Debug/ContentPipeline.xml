@@ -182,6 +182,15 @@
       <Output>C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Content\texturas\pedra.xnb</Output>
       <Time>2012-11-25T16:11:12.079-02:00</Time>
     </Item>
+    <Item>
+      <Source>texturas\paredes.png</Source>
+      <Name>texturas\paredes</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Content\texturas\paredes.xnb</Output>
+      <Time>2012-12-06T16:25:38.468-02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

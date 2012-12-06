@@ -26,11 +26,9 @@ namespace ProjetoMultimidia
         Model pista;
         Model box;
 
-        Texture2D cabeca;
-        Texture2D maoEsquerda;
-        Texture2D maoDireita;
         Texture2D texturaChaoPista;
         Texture2D texturaObstaculo;
+        Texture2D texturaParedes;
         Texture2D coracao;
         Texture2D gameover;
         Texture2D restart;
@@ -46,35 +44,26 @@ namespace ProjetoMultimidia
 
         float rotacaoPlayer;
         float posicaoLateral;
+        float posicaoLateralMax = 18.0f;
+        float posicaoLateralMin = -18.0f;
         float velocidade;
-        float velocidadeMaxima = 10.0f;
-        float velocidadeMAximaRe = -0.1f;
-        float altura;
-        float alturaMaxima = 2.0f;
-
-        Boolean subindo;
+        float velocidadeMaxima = 1.0f;
 
         int id = 1;
         int idRetornado;
         int vidas;
-        int posicao;
-        int cabecaX;
-        int cabecaY;
-        int maoEsquerdaX;
-        int maoEsquerdaY;
-        int maoDireitaX;
-        int maoDireitaY;
+        int cinturaX;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferWidth = 640;
-            graphics.PreferredBackBufferHeight = 480;
+            graphics.PreferredBackBufferHeight = 500;
         }
 
         /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
+        /// ows the game to perform any initialization it needs to before starting to run.
         /// This is where it can query for any required services and load any non-graphic
         /// related content.  Calling base.Initialize will enumerate through any components
         /// and initialize them as well.
@@ -84,15 +73,14 @@ namespace ProjetoMultimidia
             sensor = KinectSensor.KinectSensors[0];
             sensor.SkeletonFrameReady += new EventHandler<SkeletonFrameReadyEventArgs>(sensor_SkeletonFrameReady);
             sensor.DepthFrameReady += new EventHandler<DepthImageFrameReadyEventArgs>(sensor_DepthFrameReady);
-            //pode ser esse
-            //sensor.SkeletonStream.Enable();
-            sensor.SkeletonStream.Enable(new TransformSmoothParameters()
-            {
-                Correction = 0.5f,
-                JitterRadius = 0.05f,
-                MaxDeviationRadius = 0.04f,
-                Smoothing = 0.5f
-            });
+            var parameters = new TransformSmoothParameters {
+                Smoothing = 0.3f,
+                Correction = 0.0f,
+                Prediction=0.0f,
+                JitterRadius=1.0f,
+                MaxDeviationRadius=0.5f
+            };
+            sensor.SkeletonStream.Enable(parameters);
             sensor.DepthStream.Enable(DepthImageFormat.Resolution320x240Fps30);
             sensor.Start();
             valoresIniciais();
@@ -102,12 +90,40 @@ namespace ProjetoMultimidia
 
         void sensor_DepthFrameReady(object sender, DepthImageFrameReadyEventArgs e)
         {
-            throw new NotImplementedException();
+            using (var depthFrame = e.OpenDepthImageFrame())
+            {
+                if (depthFrame != null)
+                {
+                    var bits = new short[depthFrame.PixelDataLength];
+                    depthFrame.CopyPixelDataTo(bits);
+                }
+            }
         }
 
         void sensor_SkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
         {
-            throw new NotImplementedException();
+            Skeleton[] skeletons = new Skeleton[0];
+
+            using (SkeletonFrame skeletonFrame = e.OpenSkeletonFrame())
+            {
+                if (skeletonFrame != null)
+                {
+                    skeletons = new Skeleton[skeletonFrame.SkeletonArrayLength];
+                    skeletonFrame.CopySkeletonDataTo(skeletons);
+                }
+            }
+
+            foreach (Skeleton skeleton in skeletons)
+            {
+                if (skeleton.TrackingState.Equals(SkeletonTrackingState.Tracked))
+                {
+                    if (skeleton != null)
+                    {
+                        Joint cint = skeleton.Joints[JointType.HipCenter].ScaleTo(640, 480, 0.5f, 0.5f);
+                        cinturaX = 20 -(int)cint.Position.X/10;
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -125,14 +141,10 @@ namespace ProjetoMultimidia
 
             texturaChaoPista = Content.Load<Texture2D>("texturas\\chao2");
             texturaObstaculo = Content.Load<Texture2D>("texturas\\pedra");
+            texturaParedes = Content.Load<Texture2D>("texturas\\paredes");
             coracao = Content.Load<Texture2D>("texturas\\coracao2");
             gameover = Content.Load<Texture2D>("texturas\\gameover");
-            restart = Content.Load<Texture2D>("texturas\\restart");
-
-            cabeca = Content.Load<Texture2D>("texturas\\coracao3");
-            maoDireita = Content.Load<Texture2D>("texturas\\coracao3");
-            maoEsquerda = Content.Load<Texture2D>("texturas\\coracao3");
-         
+            restart = Content.Load<Texture2D>("texturas\\restart");         
         }
 
         /// <summary>
@@ -156,91 +168,25 @@ namespace ProjetoMultimidia
                 this.Exit();
 
             KeyboardState teclado = Keyboard.GetState();
-            if (teclado.IsKeyDown(Keys.Left))
+            posicaoLateral = cinturaX;
+            if (posicaoLateral > posicaoLateralMax)
             {
-                //rotacaoPlayer += 0.1f;
-                if (posicao != 0)
-                {
-                    posicao--;
-                }
+                posicaoLateral = posicaoLateralMax;
             }
-            if (teclado.IsKeyDown(Keys.Right))
+            else if (posicaoLateral < posicaoLateralMin)
             {
-                //rotacaoPlayer -= 0.1f;
-                if (posicao != 2)
-                {
-                    posicao++;
-                }
-                
-            }
-            posicaoLateral = novaPosicaoLateral(posicao, posicaoLateral);
-
-
-
-            if (teclado.IsKeyDown(Keys.Up))
-            {
-                if (velocidade < velocidadeMaxima)
-                {
-                    velocidade += 0.01f;
-                }
-            }
-            else
-            {
-                if (velocidade > 0)
-                {
-                    velocidade -= 0.01f;
-                }
+                posicaoLateral = posicaoLateralMin;
             }
 
-            if (teclado.IsKeyDown(Keys.Down))
+            if (velocidade < velocidadeMaxima && vidas > 0)
             {
-                if (velocidade > velocidadeMAximaRe)
-                {
-                    velocidade -= 0.01f;
-                }
+                velocidade += 0.01f;
             }
-            else
-            {
-                if (velocidade < 0)
-                {
-                    velocidade = 0;
-                }
-            }
-
 
             if (teclado.IsKeyDown(Keys.R))
             {
                 valoresIniciais();
             }
-
-
-
-            if (altura > 0)
-            {
-                if (subindo)
-                {
-                    altura += 0.05f;
-                } else
-                {
-                    altura -= 0.05f;
-                    if (altura < 0)
-                    {
-                        altura = 0;
-                    }
-                }
-
-                if (altura >= alturaMaxima)
-                {
-                    subindo = false;
-                }
-            }
-
-            if (teclado.IsKeyDown(Keys.Z))
-            {
-                subindo = true;
-                altura = 0.01f;
-            }
-           
 
             idRetornado = atravessouObstaculo(posicaoPlayer.X, posicaoPlayer.Z);
             if (!idRetornado.Equals(0))
@@ -253,7 +199,7 @@ namespace ProjetoMultimidia
                 
                 if (vidas <= 0)
                 {
-                    velocidade = 0;
+                    //velocidade = 0;
                 }
                 else
                 {
@@ -261,18 +207,21 @@ namespace ProjetoMultimidia
                 }
             }
 
+            if (posicaoPlayer.Z > 785)
+            {
+                velocidade=0;
+            }
+
             Vector3 novaPosicaoPlayer = new Vector3(posicaoLateral, 0, velocidade);
             posicaoPlayer.Z += Vector3.Transform(novaPosicaoPlayer, Matrix.CreateRotationY(rotacaoPlayer)).Z;
             posicaoPlayer.X = Vector3.Transform(novaPosicaoPlayer, Matrix.CreateRotationY(rotacaoPlayer)).X;
-            posicaoPlayer.Y = altura;
+
 
 
             Vector3 novaPosicaoCamera = new Vector3(0, 10, -20);
             novaPosicaoCamera = Vector3.Transform(novaPosicaoCamera, Matrix.CreateRotationY(rotacaoPlayer));
             posicaoCamera = novaPosicaoCamera + posicaoPlayer;
             visao = Matrix.CreateLookAt(posicaoCamera, posicaoPlayer, Vector3.Up);
-
-           
 
             base.Update(gameTime);
         }
@@ -285,25 +234,41 @@ namespace ProjetoMultimidia
         {
             int posicao = 10;
             GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            spriteBatch.Begin();
+            spriteBatch.Draw(texturaParedes, new Vector2(0, 0), Color.White);
+            spriteBatch.End();
+
             GraphicsDevice.BlendState = BlendState.Opaque;
             GraphicsDevice.DepthStencilState = DepthStencilState.Default;
 
             DrawModelo(player,  Matrix.CreateRotationY(rotacaoPlayer) * Matrix.CreateTranslation(posicaoPlayer),null);
             DrawModelo(pista, Matrix.CreateRotationX(MathHelper.ToRadians(-90)) * Matrix.CreateTranslation(new Vector3(0,0,400)), texturaChaoPista);
 
-            addObstaculo(box, new Vector3(0, 2, 70), texturaObstaculo);
+            addObstaculo(box, new Vector3(12, 2, 70), texturaObstaculo);
             addObstaculo(box, new Vector3(15,-2, 90), texturaObstaculo);
-            addObstaculo(box, new Vector3(-15, 3, 140), texturaObstaculo);
-            addObstaculo(box, new Vector3(0, 0, 180), texturaObstaculo);
-            addObstaculo(box, new Vector3(15, 1, 220), texturaObstaculo);
+            addObstaculo(box, new Vector3(1, 0, 180), texturaObstaculo);
+            addObstaculo(box, new Vector3(10, 1, 220), texturaObstaculo);
             addObstaculo(box, new Vector3(0, 2, 225), texturaObstaculo);
             addObstaculo(box, new Vector3(-15, 5, 280), texturaObstaculo);
-            addObstaculo(box, new Vector3(15, -3, 305), texturaObstaculo);
+            addObstaculo(box, new Vector3(11, -3, 305), texturaObstaculo);
             addObstaculo(box, new Vector3(0, 0, 320), texturaObstaculo);
-            addObstaculo(box, new Vector3(-15, 4, 360), texturaObstaculo);
-            addObstaculo(box, new Vector3(0, 1, 400), texturaObstaculo);
-            addObstaculo(box, new Vector3(15, 1, 410), texturaObstaculo);
+            addObstaculo(box, new Vector3(-7, 4, 360), texturaObstaculo);
+            addObstaculo(box, new Vector3(1, 1, 400), texturaObstaculo);
+            addObstaculo(box, new Vector3(10, 1, 410), texturaObstaculo);
             addObstaculo(box, new Vector3(0, 3, 460), texturaObstaculo);
+            addObstaculo(box, new Vector3(-13, 4, 460), texturaObstaculo);
+            addObstaculo(box, new Vector3(0, 1, 500), texturaObstaculo);
+            addObstaculo(box, new Vector3(15, 1, 510), texturaObstaculo);
+            addObstaculo(box, new Vector3(0, 3, 580), texturaObstaculo);
+            addObstaculo(box, new Vector3(3, 3, 610), texturaObstaculo);
+            addObstaculo(box, new Vector3(-7, 4, 650), texturaObstaculo);
+            addObstaculo(box, new Vector3(5, 3, 700), texturaObstaculo);
+            addObstaculo(box, new Vector3(13, 1, 705), texturaObstaculo);
+            addObstaculo(box, new Vector3(-11, 3, 730), texturaObstaculo);
+            addObstaculo(box, new Vector3(-6, 3, 760), texturaObstaculo);
+            addObstaculo(box, new Vector3(-15, -1, 783), texturaObstaculo);
+            addObstaculo(box, new Vector3(15, 0, 784), texturaObstaculo);
 
             spriteBatch.Begin();
             for (int i = 0; i < vidas; i++)
@@ -314,13 +279,13 @@ namespace ProjetoMultimidia
 
             if (vidas.Equals(0))
             {
-                spriteBatch.Draw(gameover, new Vector2(200, 300), Color.White);
-                spriteBatch.Draw(restart, new Vector2(310, 400), Color.White);
+                spriteBatch.Draw(gameover, new Vector2(140, 300), Color.White);
+                spriteBatch.Draw(restart, new Vector2(250, 400), Color.White);
             }
-
-            spriteBatch.Draw(cabeca, new Rectangle(cabecaX, cabecaY, 100, 150), Color.White);
-            spriteBatch.Draw(maoEsquerda, new Rectangle(maoEsquerdaX, maoEsquerdaY, 75, 75), Color.White);
-            spriteBatch.Draw(maoDireita, new Rectangle(maoDireitaX, maoDireitaY, 75, 75), Color.White);
+            if (posicaoPlayer.Z > 785)
+            {
+                spriteBatch.Draw(restart, new Vector2(250, 400), Color.White);
+            }
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -363,46 +328,12 @@ namespace ProjetoMultimidia
             return 0;
         }
 
-        public float novaPosicaoLateral(int posicao, float posicaoLateral)
-        {
-            float velocidade = 0.3f;
-            if (posicao == 0)
-            {
-                if (posicaoLateral < 10.0f)
-                {
-                    posicaoLateral += velocidade;
-                } 
-            }
-            if (posicao == 1)
-            {
-                if (posicaoLateral > 0.0f)
-                {
-                    posicaoLateral -= velocidade;
-                }
-                else if (posicaoLateral < 0.0f)
-                {
-                    posicaoLateral += velocidade;
-                }
-            }
-            if (posicao == 2)
-            {
-                if (posicaoLateral > -10.0f)
-                {
-                    posicaoLateral -= velocidade;
-                }
-            }
-            return posicaoLateral;
-        }
-
         public void valoresIniciais()
         {
             vidas = 3;
-            velocidade = 0.0f;
+            velocidade = 1.0f;
             rotacaoPlayer = 0.0f;
             posicaoLateral = 0.0f;
-            posicao = 1;
-            altura = 0.0f;
-            subindo = true;
             obstaculos = new List<Area>();
             idsObstaculosAtravessados = new List<int>();
             posicaoPlayer = new Vector3(0, 0, 20);
