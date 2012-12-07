@@ -199,7 +199,7 @@ namespace ProjetoMultimidia
                 
                 if (vidas <= 0)
                 {
-                    //velocidade = 0;
+                     velocidade = 0;
                 }
                 else
                 {
