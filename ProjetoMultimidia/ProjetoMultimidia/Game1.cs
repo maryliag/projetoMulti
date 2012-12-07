@@ -32,6 +32,7 @@ namespace ProjetoMultimidia
         Texture2D coracao;
         Texture2D gameover;
         Texture2D restart;
+        Texture2D congrats;
 
         Matrix visao;
         Matrix projecao;
@@ -144,7 +145,8 @@ namespace ProjetoMultimidia
             texturaParedes = Content.Load<Texture2D>("texturas\\paredes");
             coracao = Content.Load<Texture2D>("texturas\\coracao2");
             gameover = Content.Load<Texture2D>("texturas\\gameover");
-            restart = Content.Load<Texture2D>("texturas\\restart");         
+            restart = Content.Load<Texture2D>("texturas\\restart");
+            congrats = Content.Load<Texture2D>("texturas\\congrats");     
         }
 
         /// <summary>
@@ -284,6 +286,7 @@ namespace ProjetoMultimidia
             }
             if (posicaoPlayer.Z > 785)
             {
+                spriteBatch.Draw(congrats, new Vector2(140, 300), Color.White);
                 spriteBatch.Draw(restart, new Vector2(250, 400), Color.White);
             }
             spriteBatch.End();

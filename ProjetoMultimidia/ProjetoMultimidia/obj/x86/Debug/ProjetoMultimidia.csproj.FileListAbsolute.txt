@@ -24,3 +24,4 @@ C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMult
 C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Coding4Fun.Kinect.WinForm.pdb
 C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Coding4Fun.Kinect.Wpf.pdb
 C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Content\texturas\paredes.xnb
+C:\Users\Marylia\Documents\multimidia\projetoMulti\ProjetoMultimidia\ProjetoMultimidia\bin\x86\Debug\Content\texturas\congrats.xnb
